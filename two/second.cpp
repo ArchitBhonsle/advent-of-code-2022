@@ -4,30 +4,13 @@
 
 using namespace std;
 
-int outcome_score(char out) {
-  switch (out) {
-  case 'X':
-    return 0;
-  case 'Y':
-    return 3;
-  case 'Z':
-    return 6;
-  default:
-    return -1;
-  }
-}
+int outcome_score(char out) { return (out - 'X') * 3; }
 
 char my_shape(char opp, char out) {
-  switch (out) {
-  case 'X':
-    return (opp - 'A' + 2) % 3 + 'A';
-  case 'Y':
-    return opp;
-  case 'Z':
-    return (opp - 'A' + 1) % 3 + 'A';
-  default:
-    return -1;
-  }
+  char me = ((opp - 'A') + (out - 'Y')) % 3;
+  if (me < 0)
+    me += 3;
+  return me + 'A';
 }
 
 int shape_score(char me) { return me - 'A' + 1; }

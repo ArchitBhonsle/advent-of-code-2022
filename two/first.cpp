@@ -9,8 +9,7 @@ int shape_score(char me) { return me - 'A' + 1; }
 int outcome_score(char op, char me) {
   if (op == me) // tie
     return 3;
-  else if ((op == 'A' && me == 'B') || (op == 'B' && me == 'C') ||
-           (op == 'C' && me == 'A')) // win
+  else if ((op - 'A' + 1) % 3 == me - 'A') // win
     return 6;
   else // lose
     return 0;
